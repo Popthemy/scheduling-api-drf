@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.conf import settings
+from . import models
 from django.contrib.auth import get_user_model
 # Register your models here.
 
@@ -16,3 +17,9 @@ class UserAdmin(admin.ModelAdmin):
     class Meta:
         model = User
         fields = "__all__"
+
+class Student(admin.ModelAdmin):
+    list_display = ('Username', 'department', 'CurrentLevel')
+
+
+admin.site.register(models.Student, Student)
