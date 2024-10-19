@@ -1,18 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from uuid import uuid4
+from .managers import UserManager
 
 
 # Create your models here.
 
 
 class User(AbstractUser):
-    """This enalbles the user to siginusing password and email"""
+    """This enables the user to sign in iusing password and email"""
     id = models.UUIDField(default=uuid4, unique=True,
                           primary_key=True, editable=True)
     email = models.EmailField(unique=True)
 
-    # username = None
+    username = None
+    objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
